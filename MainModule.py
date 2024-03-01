@@ -4,10 +4,10 @@ import moduleStart
 
 # hàm xin chào khi bắt đầu làm việc : text là tên của người dùng
 def hello(text) :
-    moduleStart.hello(text)
+    return moduleStart.hello(text)
 # hàm nhận giọng nói và chuyển thành văn bản
 def get_audio():
-    moduleStart.get_audio()
+    return moduleStart.get_audio()
 # hàm chuyển văn bản thành âm thanh
 def speak(text):
     moduleStart.speak(text)
@@ -17,3 +17,5 @@ def get_time(text):
 # mở app trong máy tính : text là danh sách các app muốn mở
 def open_application_multi(text):
     moduleApp.open_application_multi(text)
+def controlVolumn(vol):
+    moduleFuntion.controlVolumn(vol)

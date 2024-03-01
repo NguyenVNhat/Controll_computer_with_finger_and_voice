@@ -25,15 +25,21 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 import moduleStart 
 
 lstApp = ['winword','chrome','powerpnt']
-lstAppUser = ['word','google','powerpoint']
+lstAppUser = ['Word','Google','PowerPoint']
+lstappuser = ['word','google','powerpoint']
 def open_application_multi(text):
-    for user_app, actual_app in zip(lstAppUser, lstApp):
+
+    for user_app,Userapp, actual_app in zip(lstappuser,lstAppUser, lstApp):
         if user_app in text:
             text = text.replace(user_app, actual_app)
+        if Userapp in text:
+            text = text.replace(Userapp, actual_app)   
     lst = []
+    
     for txt in lstApp:
         if txt in text:
             lst.append(txt)
+    print(lst)
     for app in lst:
         open_application(app)
         time.sleep(5)

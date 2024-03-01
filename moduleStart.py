@@ -22,6 +22,7 @@ from youtubesearchpython import VideosSearch
 import fnmatch
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+import pygame
 
 # khai báo biến mặc định
 language = 'vi'
@@ -39,9 +40,13 @@ path = ChromeDriverManager().install()
 def speak(text):
     tts = gTTS(text=text, lang=language, slow=False)
     tts.save("sound.mp3")
-    playsound.playsound("sound.mp3")
+    pygame.mixer.init()
+    pygame.mixer.music.load("sound.mp3")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+    pygame.mixer.quit() 
     os.remove("sound.mp3")
-
 '''
     chuyển âm thanh thành văn bản
 '''
@@ -56,8 +61,7 @@ def get_audio():
             print(text)
             return text
         except:
-            print("...")
-            return 0
+            return None
         
 '''
     lấy thời gian hiện tại đưa ra cau chào

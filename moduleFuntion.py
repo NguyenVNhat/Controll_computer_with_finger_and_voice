@@ -23,6 +23,9 @@ import fnmatch
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 import moduleStart
+import numpy as np
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
 
 def get_time(text):
     now = datetime.datetime.now()
@@ -35,13 +38,14 @@ def get_time(text):
         moduleStart.speak("Mình chưa hiểu ý của bạn. Bạn nói lại được không?")
 
 
-def controlVolumn():
+def controlVolumn(vol):
     devices = AudioUtilities.GetSpeakers()
     interface = devices.Activate(
-    IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-    volume = interface.QueryInterface(IAudioEndpointVolume)
-    volrange = volume.GetVolumeRange()
-    minVol = volrange[0]
-    maxVol = volrange[1]
-    vol = 30
-    volume.SetMasterVolumeLevel(vol, None)
+        IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    volume = cast(interface.QueryInterface(IAudioEndpointVolume), POINTER(IAudioEndpointVolume))
+    
+    # Chuyển giá trị từ phần trăm thành giá trị trong khoảng [0.0, 1.0]
+    vol_scalar = vol / 100.0
+    
+    # Đặt mức âm thanh sử dụng SetMasterVolumeLevelScalar
+    volume.SetMasterVolumeLevelScalar(vol_scalar, None)
