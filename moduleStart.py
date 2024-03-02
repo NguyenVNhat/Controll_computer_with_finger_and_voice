@@ -61,8 +61,7 @@ def get_audio():
             print(text)
             return text
         except:
-            return None
-        
+            return None    
 '''
     lấy thời gian hiện tại đưa ra cau chào
 '''
