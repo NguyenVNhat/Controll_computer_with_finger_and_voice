@@ -11,10 +11,12 @@ listFunction2 = ['âm lượng','volumne']
 Bot.speak("Bắt đầu chương trình")
 while True :
     print('--')
-    request = input("Nhập từ khóa : ")
-    request = request.lower()
+    request = None
+    while request == None :
+        request = input('Từ khóa :')
     if request is not None:
-        if 'mấy giờ ' in request or 'ngày mấy ' in request  :
+        request = request.lower()
+        if 'mấy giờ' in request or 'ngày mấy' in request  :
             Bot.get_time(request)
         elif 'âm lượng' in request:
             vol = request.split('lượng',1)
@@ -26,8 +28,7 @@ while True :
             app = request.split('dụng',1)
             Bot.open_application_multi(app[1])
         elif 'mở web' in request:
-            web = request.split('web',1)
-            Bot.open_website(web[1])
+            Bot.open_website(request)
         elif 'mở bài hát' in request:
             song = request.split('hát',1)
             Bot.playSong_youtube(song[1])
@@ -36,6 +37,13 @@ while True :
             Bot.googleSearch(search[1])
         elif 'chụp màn hình' in request:
             Bot.screenShot()
+        elif 'mở cài đặt' in request:
+            Bot.open_setting()
+        elif 'chuyển sang trang' in request:
+            title = request.split('trang',1)
+            Bot.switch_window(title[1])
+        elif 'trở lại trang' in request:
+            Bot.Return_Window()
         else :
             print("Sao dị")
     else :

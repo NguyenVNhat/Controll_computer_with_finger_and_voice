@@ -27,10 +27,16 @@ def controlBrightness(value):
 def playSong_youtube(text):
     moduleApp.play_song(text)
 def open_website(text):
-    return moduleApp.open_website(text)
+    moduleApp.open_website(text)
 def googleSearch(text):
     moduleApp.googleSearch(text)
 def weather_description(text):
     return moduleApp.current_weather(text)
 def screenShot():
     moduleFuntion.screenShot()
+def open_setting():
+    moduleFuntion.open_setting()
+def switch_window(text):
+    moduleFuntion.switch_window(text)
+def Return_Window():
+    moduleFuntion.Return_Window()

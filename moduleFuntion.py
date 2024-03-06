@@ -31,6 +31,9 @@ import pyautogui
 from PIL import Image
 import random
 import string
+import psutil
+import subprocess
+import pygetwindow as gw
 
 def get_time(text):
     now = datetime.datetime.now()
@@ -63,19 +66,49 @@ def generate_random_name(length=8):
 # chụp màn hình
 def screenShot():
     image = pyautogui.screenshot()
-
     imageFolder = 'screenShot'
-    # Lưu ảnh với tên '1.png' trong thư mục
     imageName = "1"
     imagePath = os.path.join(imageFolder, f'{imageName}.png')
 
     while os.path.exists(imagePath):
-        # Tên ảnh đã tồn tại, tạo tên mới
         imageName = generate_random_name()
         imagePath = os.path.join(imageFolder, f'{imageName}.png')
-        
-    image.save(imagePath)
 
-    # Mở ảnh
+    image.save(imagePath)
     img = Image.open(imagePath)
     img.show()
+
+# mở cài đặt
+def open_setting():
+    pyautogui.hotkey('winleft', 'i')
+    time.sleep(1)
+
+def hide_task_manager():
+    try:
+        subprocess.run(["taskkill", "/fi", "imagename eq chrome.exe"])
+        print("Đã ẩn Task Manager thành công.")
+    except Exception as e:
+        print(f"Không thể ẩn Task Manager. Lỗi: {e}")
+
+
+def Return_Window():
+    try:
+        pyautogui.hotkey('alt', 'tab')
+        time.sleep(1) 
+        pyautogui.press('enter')
+    except Exception as e:
+        print(f" Lỗi: {e}")
+
+def switch_window(window_title):
+    try:
+        window = gw.getWindowsWithTitle(window_title)
+
+        if window:
+            window[0].activate()
+        else:
+            print(f"Không tìm thấy cửa sổ có tiêu đề: {window_title}")
+
+    except Exception as e:
+        print(f"Không thể chuyển đến cửa sổ: {window_title}. Lỗi: {e}")
+
+os.system('cmd /c "netsh wlan show networks"')

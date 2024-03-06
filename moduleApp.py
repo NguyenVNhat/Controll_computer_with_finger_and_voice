@@ -25,7 +25,7 @@ from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 import moduleStart 
 
 
-lstApp = ['winword','chrome','powerpnt']
+lstApp = ['winword.exe','chrome.exe','powerpnt.exe']
 lstappuser = ['word','google','powerpoint']
 #mở nhiều app trên máy tính
 def open_application_multi(text):
@@ -53,7 +53,7 @@ def open_application(text):
 
 #mở website
 def open_website(text):
-    reg_ex = re.search('mở (.+)', text)
+    reg_ex = re.search('mở web (.+)', text)
     if reg_ex:
         domain = reg_ex.group(1)
         url = 'https://www.' + domain+'.com'
@@ -70,8 +70,7 @@ def play_song(text):
     webbrowser.open(video_url)
 
 def googleSearch(text):
-    search_for = text.split("kiếm", 1)[1]
-    search_url = f"https://www.google.com/search?q={search_for}"
+    search_url = f"https://www.google.com/search?q={text}"
     webbrowser.open(search_url)
 
 def current_weather(text):

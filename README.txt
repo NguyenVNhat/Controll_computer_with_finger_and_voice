@@ -11,3 +11,7 @@ tìm kiếm trên google : tìm kiếm google + từ khóa
 
 mở cài đặt trên máy tính : mở cài đặt
 chụp màn hình : chụp màn hình
+
+# đang mở word, google ,...
+chuyển tab : chuyển sang trang + tên trang
+trở lại tab cũ : trở lại trang
