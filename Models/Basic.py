@@ -1,34 +1,10 @@
 import os
-import playsound
 import speech_recognition as sr
-import time
-import sys
-import ctypes
-import wikipediaapi
-import datetime
-import json
-import re
-import webbrowser
-import smtplib
-import requests
-import urllib
-import urllib.request as urllib2
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
 from time import strftime
 from gtts import gTTS
-from youtubesearchpython import VideosSearch
-import fnmatch
-from comtypes import CLSCTX_ALL
-from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 import pygame
 
-# khai báo biến mặc định
 language = 'vi'
-user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-wiki_wiki = wikipediaapi.Wikipedia(language, headers={'User-Agent': user_agent})
-path = ChromeDriverManager().install()
 
 ''' 
     hàm chuyển văn bản thành âm thanh

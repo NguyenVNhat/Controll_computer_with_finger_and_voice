@@ -1,55 +1,10 @@
-import os
-import playsound
-import speech_recognition as sr
-import time
-import sys
-import ctypes
-import wikipediaapi
 import datetime
-import json
 import re
 import webbrowser
-import smtplib
 import requests
-import urllib
-import urllib.request as urllib2
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
-from time import strftime
-from gtts import gTTS
 from youtubesearchpython import VideosSearch
-import fnmatch
 from comtypes import CLSCTX_ALL
-from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
-import moduleStart 
 
-
-lstApp = ['winword.exe','chrome.exe','powerpnt.exe']
-lstappuser = ['word','google','powerpoint']
-#mở nhiều app trên máy tính
-def open_application_multi(text):
-    text = text.lower()
-    for user_app, actual_app in zip(lstappuser, lstApp):
-        if user_app in text:
-            text = text.replace(user_app, actual_app)
-    
-    lst = []
-    
-    for txt in lstApp:
-        if txt in text:
-            lst.append(txt)
-    print(lst)
-    for app in lst:
-        open_application(app)
-        time.sleep(5)
-#mở 1 app
-def open_application(text):
-    applications_folder = "C:\Program Files" 
-    for root, dirs, files in os.walk(applications_folder):
-        for file in files:
-            if fnmatch.fnmatch(file.lower(), f'*{text.lower()}*'):
-                os.startfile(os.path.join(root, file))
 
 #mở website
 def open_website(text):
@@ -58,7 +13,6 @@ def open_website(text):
         domain = reg_ex.group(1)
         url = 'https://www.' + domain+'.com'
         webbrowser.open(url)
-    
 # mở nhạc youtube
 def play_song(text):
     mysong = text
@@ -69,10 +23,12 @@ def play_song(text):
     video_url = 'https://www.youtube.com/watch?v=' + result['result'][0]['id']
     webbrowser.open(video_url)
 
+# tìm kiếm trên google
 def googleSearch(text):
     search_url = f"https://www.google.com/search?q={text}"
     webbrowser.open(search_url)
 
+# lấy thông tin từ trang dự báo thời tiết
 def current_weather(text):
     ow_url = "http://api.openweathermap.org/data/2.5/weather?"
     city = text

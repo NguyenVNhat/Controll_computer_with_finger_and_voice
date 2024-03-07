@@ -1,29 +1,8 @@
 import os
-import playsound
-import speech_recognition as sr
 import time
-import sys
-import ctypes
-import wikipediaapi
 import datetime
-import json
-import re
-import webbrowser
-import smtplib
-import requests
-import urllib
-import urllib.request as urllib2
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from webdriver_manager.chrome import ChromeDriverManager
-from time import strftime
-from gtts import gTTS
-from youtubesearchpython import VideosSearch
-import fnmatch
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
-import moduleStart
-import numpy as np
 from ctypes import cast, POINTER
 from comtypes import CLSCTX_ALL
 from screen_brightness_control import set_brightness, get_brightness
@@ -31,19 +10,19 @@ import pyautogui
 from PIL import Image
 import random
 import string
-import psutil
 import subprocess
 import pygetwindow as gw
+import Basic
 
 def get_time(text):
     now = datetime.datetime.now()
     if "giờ" in text:
-        moduleStart.speak('Bây giờ là %d giờ %d phút' % (now.hour, now.minute))
+        Basic.speak('Bây giờ là %d giờ %d phút' % (now.hour, now.minute))
     elif "ngày" in text:
-        moduleStart.speak("Hôm nay là ngày %d tháng %d năm %d" %
+        Basic.speak("Hôm nay là ngày %d tháng %d năm %d" %
               (now.day, now.month, now.year))
     else:
-        moduleStart.speak("Mình chưa hiểu ý của bạn. Bạn nói lại được không?")
+        Basic.speak("Mình chưa hiểu ý của bạn. Bạn nói lại được không?")
 
 # điều khiển âm thanh
 def controlVolumn(vol):
@@ -78,11 +57,6 @@ def screenShot():
     img = Image.open(imagePath)
     img.show()
 
-# mở cài đặt
-def open_setting():
-    pyautogui.hotkey('winleft', 'i')
-    time.sleep(1)
-
 def hide_task_manager():
     try:
         subprocess.run(["taskkill", "/fi", "imagename eq chrome.exe"])
@@ -110,5 +84,3 @@ def switch_window(window_title):
 
     except Exception as e:
         print(f"Không thể chuyển đến cửa sổ: {window_title}. Lỗi: {e}")
-
-os.system('cmd /c "netsh wlan show networks"')
