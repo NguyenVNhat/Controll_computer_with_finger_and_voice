@@ -27,3 +27,14 @@ start ms-settings:mobile-devices # mở cài đặt your phone
 start ms-settings:mousetouchpad # mở cài đặt mouse
 start ms-settings:printers # mở cài đặt printer and scanner
 start ms-settings:bluetooth # mở cài đặt bluetooth
+start explorer # mở file explorer
+taskmgr # mở task manager
+calc # mở caculator
+control panel # mở control panel
+start ms-photos: # mở photos
+dir "\*search term*" /s # mở 1 phần tử trong máy
+start microsoft.windows.camera: # mở camera
+start outlookcal: # mở calendar
+start ms-clock: # mở clock
+start bingmaps: # mở bản đồ
+start outlookmail: # mở outlookmail

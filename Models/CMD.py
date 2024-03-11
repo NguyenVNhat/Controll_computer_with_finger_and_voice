@@ -1,32 +1,29 @@
 import subprocess
 import tkinter as tk
 import os
+import logging
+import json
+logging.basicConfig(level=logging.WARNING)
+
+def getCMD(value):
+    with open('Resource/dict_cmd.json', encoding='utf-8') as file:
+        data = json.load(file)
+
+    if value in data:
+        query = data[value]
+        if " " in query[0]:
+            query = query[0].split(" ")
+        else:
+            query = query[0]
+    return query
 
 def OpenSetting(value):
     value = value.lower()
+    value = getCMD(value)
     try:
-        if 'mở cài đặt' == value:
-            subprocess.run(["start", "ms-settings:"], shell=True)
-        elif 'âm thanh' in value:
-            subprocess.run(["start", "ms-settings:sound"], shell=True)
-        elif 'display' in value:
-            subprocess.run(["start", "ms-settings:display"], shell=True)
-        elif 'autoplay' in value:
-            subprocess.run(["start", "ms-settings:display"], shell=True)
-        elif 'usb' in value:
-            subprocess.run(["start", "ms-settings:usb"], shell=True)
-        elif 'pen and windows ink' in value:
-            subprocess.run(["start", "ms-settings:pen"], shell=True)
-        elif 'touchpad' in value:
-            subprocess.run(["start", "ms-settings:devices-touchpad"], shell=True)
-        elif 'mobile-devices' in value:
-            subprocess.run(["start", "ms-settings:mobile-devices"], shell=True)
-        elif 'mouse' in value:
-            subprocess.run(["start", "ms-settings:mousetouchpad"], shell=True)
-        elif 'printers' in value:
-            subprocess.run(["start", "ms-settings:printers"], shell=True)
-        elif 'bluetooth' in value:
-            subprocess.run(["start", "ms-settings:bluetooth"], shell=True)
+        if len(value) == 2:
+            subprocess.run([value[0], value[1]], shell=True)
+        else :
+            subprocess.run([value[0]], shell=True)
     except Exception as e:
-        print(f"An error occurred: {e}")
-
+        logging.warning('Error : open setting')

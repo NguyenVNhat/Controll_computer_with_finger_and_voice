@@ -4,17 +4,29 @@ import webbrowser
 import requests
 from youtubesearchpython import VideosSearch
 from comtypes import CLSCTX_ALL
-
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import json
+file_path = 'Resource/dict_website.json'
+def addJson(name,url):
+    new_data = {name:url}
+    with open(file_path, encoding='utf-8') as file:
+        data = json.load(file)
+    data.update(new_data)
+    with open(file_path, 'w', encoding='utf-8') as file:
+            json.dump(data, file, indent=4, ensure_ascii=False)
 
 #mở website
 def open_website(text):
-    reg_ex = re.search('mở web (.+)', text)
-    if reg_ex:
-        domain = reg_ex.group(1)
-        url = 'https://www.' + domain+'.com'
+    with open('Resource/dict_website.json', encoding='utf-8') as file:
+        data = json.load(file)
+    if text in data:
+        query = data[text]
+        url = query[0]
         webbrowser.open(url)
 # mở nhạc youtube
-def play_song(text):
+def play_Video(text):
     mysong = text
     while True:
         result = VideosSearch(mysong, limit=1).result()
@@ -22,6 +34,11 @@ def play_song(text):
             break
     video_url = 'https://www.youtube.com/watch?v=' + result['result'][0]['id']
     webbrowser.open(video_url)
+
+# mở nhạc zingmp3
+def play_song_mp3(song_name):
+    search_url = "https://zingmp3.vn/tim-kiem/tat-ca?q={}".format(song_name.replace(" ", "+"))
+    webbrowser.open(search_url)
 
 # tìm kiếm trên google
 def googleSearch(text):
@@ -60,4 +77,19 @@ def current_weather(text):
                                                                            hourset = sunset.hour, minset = sunset.minute, 
                                                                            temp = current_temperature, pressure = current_pressure, humidity = current_humidity)
         return content
+    
+def send_email(title,text, email_receive):
+    email_send = 'nhataaghjkl@gmail.com'
+    password = 'llur licc ffkl zaix'
+    email_to = email_receive
+    message = MIMEMultipart()
+    message['From'] = email_send
+    message['To'] = email_to
+    message['Subject'] = title
+    content = MIMEText(text, 'plain', 'utf-8')
+    message.attach(content)
+    with smtplib.SMTP('smtp.gmail.com', 587) as session:
+        session.starttls()
+        session.login(email_send, password)
+        session.sendmail(email_send, email_to, message.as_string())
 

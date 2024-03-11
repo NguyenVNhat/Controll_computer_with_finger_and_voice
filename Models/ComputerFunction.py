@@ -57,14 +57,6 @@ def screenShot():
     img = Image.open(imagePath)
     img.show()
 
-def hide_task_manager():
-    try:
-        subprocess.run(["taskkill", "/fi", "imagename eq chrome.exe"])
-        print("Đã ẩn Task Manager thành công.")
-    except Exception as e:
-        print(f"Không thể ẩn Task Manager. Lỗi: {e}")
-
-
 def Return_Window():
     try:
         pyautogui.hotkey('alt', 'tab')

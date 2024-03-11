@@ -2,6 +2,9 @@ import os
 import time
 import fnmatch
 from comtypes import CLSCTX_ALL
+import subprocess
+import logging
+logging.basicConfig(level=logging.WARNING)
 
 lstApp = ['winword.exe','chrome.exe','powerpnt.exe']
 lstappuser = ['word','google','powerpoint']
@@ -28,3 +31,10 @@ def open_application(text):
         for file in files:
             if fnmatch.fnmatch(file.lower(), f'*{text.lower()}*'):
                 os.startfile(os.path.join(root, file))
+
+def OpenApp(app):
+    try:
+        subprocess.run(['start', '/MIN', '/B', f'{app}.exe'], shell=True)
+    except Exception as e:
+        logging.warning(f'Error: Unable to open {app} - {e}')
+
