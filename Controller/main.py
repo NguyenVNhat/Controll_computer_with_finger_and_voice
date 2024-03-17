@@ -13,6 +13,7 @@ def mainFunction(keyvalue):
     request = keyvalue
     if request is not None:
         request = request.lower()
+        print(request)
         if 'mấy giờ' in request or 'ngày mấy' in request  :
             ComputerFunction.get_time(request)
         elif 'âm lượng' in request:

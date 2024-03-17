@@ -74,5 +74,34 @@
     "twitter": [
         "https://twitter.com/LOGIN"
     ],
-    "chatgpt": "https://chat.openai.com/"
+    "chatgpt": [
+        "https://chat.openai.com/"
+    ],
+    "msteam":[
+        "https://teams.microsoft.com/"
+    ],
+    "figma":[
+        "https://www.figma.com/"
+    ],
+    "tinkercard":[
+        "https://www.tinkercad.com/"
+    ],
+    "zalo":[
+        "https://id.zalo.me/"
+    ],
+    "onedriver":[
+        "https://dutudn-my.sharepoint.com/"
+    ],
+    "outlook":[
+        "https://outlook.live.com/"
+    ],
+    "google keep":[
+        "https://keep.google.com/"
+    ],
+    "google colab":[
+        "https://colab.research.google.com/"
+    ],
+    "tiktok":[
+        "https://www.tiktok.com/"
+    ]
 }

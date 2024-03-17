@@ -51,7 +51,7 @@
         "start microsoft.windows.camera:"
     ],
     "mở lịch":[
-        "start outlookcal"
+        "start outlookcal:"
     ],
     "mở quản lí đồng hồ":[
         "start ms-clock:"
@@ -60,7 +60,7 @@
         "start bingmaps:"
     ],
     "mở outlook":[
-        "start outlookmail"
+        "start outlookmail:"
     ]
 
 }

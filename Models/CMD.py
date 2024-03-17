@@ -24,6 +24,6 @@ def OpenSetting(value):
         if len(value) == 2:
             subprocess.run([value[0], value[1]], shell=True)
         else :
-            subprocess.run([value[0]], shell=True)
+            subprocess.run(value, shell=True)
     except Exception as e:
         logging.warning('Error : open setting')

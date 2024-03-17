@@ -27,10 +27,8 @@ def speak(text):
     chuyển âm thanh thành văn bản
 '''
 def get_audio():
-    print("Start:")
     r = sr.Recognizer() # nhận diện giọng nói từ nhiều nguồn
     with sr.Microphone() as source: # mở mic 
-        print("Tôi: ", end='')
         audio = r.listen(source, phrase_time_limit=5) # thu âm trong 5 giây
         try:
             text = r.recognize_google(audio, language="vi-VN") # chuyển âm thanh thành văn bản
