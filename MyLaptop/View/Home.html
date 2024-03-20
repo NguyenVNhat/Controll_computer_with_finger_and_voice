@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Interface</title>
+<style>
+  body, html {
+margin: 0;
+padding: 0;
+height: 100%;
+width: 100%;
+}
+.home{
+display: flex;
+align-items: center;
+margin-top: auto;
+margin-bottom: auto;
+height: 100%;
+}
+.container {
+display: flex;
+height: 60%;
+width: 100%;
+
+}
+
+.left-panel {
+flex: 1;
+padding: 20px;
+}
+
+.left-panel img {
+max-width: 100%;
+max-height: 100%;
+}
+
+.right-panel {
+flex: 1;
+display: flex;
+height: 100%;
+width: 100%;
+flex-direction: column;
+border-left: 1px solid #ccc;
+}
+
+.messages-container {
+display: flex;
+flex-direction: column;
+flex: 1;
+padding: 20px;
+overflow-y: auto;
+}
+
+.input-container {
+display: flex;
+padding: 10px;
+}
+
+.input-container input {
+flex: 1;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+margin-right: 10px;
+}
+
+.input-container button {
+padding: 10px;
+border: none;
+background-color: #007bff;
+color: #fff;
+border-radius: 5px;
+cursor: pointer;
+}
+.messages{
+display: flex;
+height: 100%;
+width: 100%;
+flex-direction: column;
+justify-content: space-between;
+
+}
+
+.message, .owner {
+background-color: #007bff;
+color: #fff;
+padding: 10px;
+width: 40%;
+margin-bottom: 10px;
+max-width: 40%; /* Giới hạn chiều rộng của tin nhắn và chủ sở hữu */
+display: -webkit-box;
+-webkit-line-clamp: 10;
+-webkit-box-orient: vertical;
+overflow: hidden;
+padding: 12px 12px;
+}
+.message{
+align-self: flex-start;
+border-top-left-radius: 20px;
+border-top-right-radius: 20px;
+border-bottom-right-radius: 20px;
+}
+.owner {
+align-self: flex-end; /* Đặt chủ sở hữu bên phải */
+border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+
+</style>
+</head>
+<body>
+<div class="home">
+  <div class="container">
+    <div class="left-panel">
+      <img src="camera" alt="Image">
+    </div>
+    <div class="right-panel">
+      <div class="messages">
+        <!-- Tin nhắn sẽ được thêm vào đây -->
+        <div class="messages-container" >
+          <div class="message">Hellooossssssooooooo thanks you go goodbye bye bye bye  </div>
+          <div class="owner">Goodbye see you again ahihi hihi hihi hihi hihi hiihi hihi hih</div>
+      </div>
+      <div class="input-container">
+        <input type="text" placeholder="Nhập tin nhắn...">
+        <button>Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
