@@ -19,7 +19,7 @@ access_phrases = [
 ]
 
 def update_json_file(website_name, replaced_phrases):
-    filename = 'Raspberry/Resource/requestWebsite.json'
+    filename = 'Resource/requestWebsite.json'
     try:
         with open(filename, "r", encoding='utf-8') as f:
             data = json.load(f)
@@ -34,3 +34,4 @@ def addNewWebsiteRequest(website_name):
     if not is_website_exist(website_name):
         replaced_phrases = replace_website_name(website_name, access_phrases)
         update_json_file(website_name, replaced_phrases)
+addNewWebsiteRequest("codepen.io")

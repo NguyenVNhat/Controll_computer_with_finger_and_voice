@@ -1,22 +1,21 @@
-hỏi giờ : bây giờ là mấy giờ
-hỏi ngày : hôm nay ngày mấy
+hỏi giờ : bây giờ là mấy giờ OK
+hỏi ngày : hôm nay ngày mấy OK
 
-chỉnh sửa âm lượng : âm lượng + giá trị
-chỉnh sửa độ sáng : độ sáng + giá trị
+chỉnh sửa âm lượng : âm lượng + giá trị OK
+chỉnh sửa độ sáng : độ sáng + giá trị OK
 
-mở ứng dụng : mở ứng dụng + tên ứng dụng
-mở web : mở web + tên web
-mở nhạc : mở bài hát + tên bài hát
+mở ứng dụng : mở ứng dụng + tên ứng dụng 
+mở web : mở web + tên web OK
+mở nhạc : mở bài hát + tên bài hát OK
 tìm kiếm trên google : tìm kiếm google + từ khóa
 
-mở cài đặt trên máy tính : mở cài đặt
-chụp màn hình : chụp màn hình
+mở cài đặt trên máy tính : mở cài đặt 
+chụp màn hình : chụp màn hình OK
 
 # đang mở word, google ,...
-chuyển tab : chuyển sang trang + tên trang
-trở lại tab cũ : trở lại trang
-
-1 số lệnh cmd :
+chuyển tab : chuyển sang trang + tên trang OK
+trở lại tab cũ : trở lại trang OK
+1 số lệnh cmd : OK
 start ms-settings:sound  # mở cài đặt âm thanh
 start ms-settings:display # mở cài đặt display
 start ms-settings:autoplay # mở cài đặt autoplay

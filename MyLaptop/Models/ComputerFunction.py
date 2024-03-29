@@ -26,6 +26,7 @@ def get_time(text):
 
 # điều khiển âm thanh
 def controlVolumn(vol):
+    print('OK')
     devices = AudioUtilities.GetSpeakers()
     interface = devices.Activate(
         IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
