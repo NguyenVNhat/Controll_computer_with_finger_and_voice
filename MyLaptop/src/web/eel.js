@@ -161,7 +161,6 @@ eel = {
         });
     }
 };
-
 eel._init();
 
 if(typeof require !== 'undefined'){

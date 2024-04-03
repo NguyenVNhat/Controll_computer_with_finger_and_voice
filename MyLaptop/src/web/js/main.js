@@ -1,18 +1,12 @@
 
-//user clicked button
-document.getElementById("userInputButton").addEventListener("click", getUserInput, false);
-//user pressed enter '13'
-document.getElementById("userInput").addEventListener("keyup", function (event) {
-    if (event.keyCode === 13) {
-        //cancel the default action
-        event.preventDefault();
-        //process event
-        getUserInput();
-    }
-});
+
 eel.expose(setUserInput)
+eel.expose(setAppInput)
 function setUserInput(msg) {
     addUserMsg(msg);
+}
+function setAppInput(msg){
+    addAppMsg(msg);
 }
 
 
@@ -38,13 +32,3 @@ function changeClass(element, index, newClass) {
     element.children[index].className = newClass;
 }
 
-function getUserInput() {
-    element = document.getElementById("userInput");
-    msg = element.value;
-    if (msg.length != 0) {
-        element.value = "";
-        eel.getUserInput(msg);
-        addUserMsg(msg);
-    
-    }
-}

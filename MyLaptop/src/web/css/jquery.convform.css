@@ -54,6 +54,7 @@ div.conv-form-wrapper div#messages:after {
 }
 div.conv-form-wrapper {
     position: relative;
+    width: 100%;
 }
 div.conv-form-wrapper div.wrapper-messages {
     position: relative;

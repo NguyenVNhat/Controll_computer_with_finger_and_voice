@@ -3,7 +3,8 @@ import os
 import threading
 from queue import Queue
 import time
-
+import json
+import numpy as np
 class ChatBot:
     started = False
     userinputQueue = Queue()
@@ -19,31 +20,32 @@ class ChatBot:
     @staticmethod
     def close_callback(route, websockets):
         exit()
+    @staticmethod
+    def close():
+        ChatBot.started = False
 
     @staticmethod
     @eel.expose
     def getUserInput(msg):
         ChatBot.userinputQueue.put(msg)
         print(msg)
-    
+
     @staticmethod
-    def close():
-        ChatBot.started = False
+    def setAppInput():
+        with open('Resource/dict_respone.json', encoding='utf-8') as file:
+            data = json.load(file)
+        random = np.random.randint(0,len(data))
+        print(random)
+        eel.setAppInput(data['apprespone'][random])
+    @staticmethod
+    def setAppInputMSG(msg):
+        eel.setAppInput(msg)
 
     @staticmethod
     def setUserInput(msg):
         eel.setUserInput(msg)
 
-    @staticmethod
-    def getMessageFromClient(user_input):
-            with lock:  
-                ChatBot.setUserInputPython(user_input)
-
-    @staticmethod
-    def setUserInputPython(msg):
-        ChatBot.userinputQueue.put(msg)
-        eel.setUserInput(msg)
-
+        
     @staticmethod
     def start():
         path = os.path.dirname(os.path.abspath(__file__))

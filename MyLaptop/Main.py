@@ -71,13 +71,18 @@ def start_socket_server():
     while True:
         client_socket, client_address = server_socket.accept()
         print("Kết nối từ:", client_address)
-        
-        data = client_socket.recv(1024).decode()
-        mainFunction(data)
-        app.ChatBot.setUserInput(data)
-        print(data)
-        message = "Tin nhắn của bạn đã được nhận!"
-        client_socket.send(message.encode())
+        while True:
+            data = client_socket.recv(1024).decode()
+            if data == 'Error':
+                app.ChatBot.setAppInputMSG("Tôi không hiểu ý bạn")
+            else :
+                request = data.split('Message')[0]
+                message = data.split('Message')[1]
+                app.ChatBot.setUserInput(message)
+                app.ChatBot.setAppInput()
+                mainFunction(request)
+            message = "Tin nhắn của bạn đã được nhận!"
+            client_socket.send(message.encode())
         client_socket.close()
 
 # Khởi chạy 2 luồng

@@ -48,7 +48,8 @@ def AnalysisSound(request):
             else :
                 for p in phrases[0]:
                     if p in request :
-                        return function 
+                        return function
+    return "Error"
                     
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = '127.0.0.1'
@@ -57,7 +58,7 @@ client_socket.connect((host, port))
 while True:
     request = input('Nhập message: ')
     request = request.lower()
-    message = AnalysisSound(request)
+    message = AnalysisSound(request) +" Message "+request
     client_socket.send(message.encode())
     data = client_socket.recv(1024).decode()
     print("Tin nhắn từ server:", data)
