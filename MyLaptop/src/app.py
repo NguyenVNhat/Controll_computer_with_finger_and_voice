@@ -55,7 +55,7 @@ class ChatBot:
                       host='localhost',
                       port=27005,
                       block=False,
-                      size=(350, 480),
+                      size=(620, 390),
                       position=(10,100),
                       disable_cache=True,
                       close_callback=ChatBot.close_callback)
