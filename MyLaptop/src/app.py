@@ -51,7 +51,7 @@ class ChatBot:
         path = os.path.dirname(os.path.abspath(__file__))
         eel.init(path + r'\web', allowed_extensions=['.js', '.html'])
         try:
-            eel.start('index.html', mode='chrome',
+            eel.start('index.html', mode='Microsoft Edge',
                       host='localhost',
                       port=27005,
                       block=False,

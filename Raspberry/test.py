@@ -34,7 +34,7 @@ def update_json_file(website_name, access_phrases):
             data = json.load(f)
     except FileNotFoundError:
         data = {}
-    
+    # tại sao nó có thể tạo ra các file requestCMD.json
     if website_name not in data:
         data[website_name] = access_phrases
         with open(filename, "w", encoding='utf-8') as f:

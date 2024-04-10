@@ -1,8 +1,28 @@
 import sys
-sys.path.insert(0,'Model')
 import re
 import json
+import threading
+import cv2
+sys.path.insert(0,'Model')
+import hand as htm
+import os
+import numpy as np
+import speech_recognition as sr
 import socket
+from comtypes import CLSCTX_ALL
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+
+def get_audio():
+    print('STart :')
+    r = sr.Recognizer() # nhận diện giọng nói từ nhiều nguồn
+    with sr.Microphone() as source: # mở mic 
+        audio = r.listen(source, phrase_time_limit=3) # thu âm trong 5 giây
+        try:
+            text = r.recognize_google(audio, language="vi-VN") # chuyển âm thanh thành văn bản
+            print(text)
+            return text
+        except:
+            return None 
 def AnalysisSound(request):
     # mở website
     with open('Resource/requestWebsite.json', encoding='utf-8') as file:
@@ -50,18 +70,56 @@ def AnalysisSound(request):
                     if p in request :
                         return function
     return "Error"
-                    
+
+def request_chatbot(client_socket):
+    while True:
+        try:
+            request = get_audio()
+            while request == "" or request == None:
+                request = get_audio()
+            request = request.lower()
+            message = AnalysisSound(request) +" Message "+request
+            client_socket.send(message.encode())
+            data = client_socket.recv(1024).decode()
+            print("Tin nhắn từ server:", data)
+        except:
+            print('')
+
+def request_hand(client_socket):
+    devices = AudioUtilities.GetSpeakers()
+    interface = devices.Activate(
+    IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    cap= cv2.VideoCapture(0)
+    FolderPath="Fingers"
+    lst=os.listdir(FolderPath)
+    lst2=[]
+    for i in lst:
+        image=cv2.imread(f"{FolderPath}/{i}")
+        lst2.append(image)
+    detector=htm.handDetector(detectionCon=1) # tạo một đối tượng detector từ lớp hand.py
+# Phát hiện và gửi dữ liệu
+    while True:
+        ret, frame = cap.read()
+        frame = detector.findHands(frame)
+        lmList = detector.findPosition(frame, draw=False)  # phát hiện vị trí
+        if len(lmList) != 0:
+            # Chuyển lmList thành chuỗi JSON
+            lmList_json = json.dumps(lmList)
+            # Gửi chuỗi JSON qua client_socket
+            client_socket.send(lmList_json.encode())
+        # print(lmList)   
+
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = '127.0.0.1'
 port = 12345
 client_socket.connect((host, port))
-while True:
-    request = input('Nhập message: ')
-    request = request.lower()
-    message = AnalysisSound(request) +" Message "+request
-    client_socket.send(message.encode())
-    data = client_socket.recv(1024).decode()
-    print("Tin nhắn từ server:", data)
+print('da ket noi toi server')
+rq_chatbot = threading.Thread(target=request_chatbot, args=(client_socket,))
+rq_chatbot.start()
+rq_hand  = threading.Thread(target=request_hand(client_socket))
+rq_hand.start()
+
+
 client_socket.close()
             
 
