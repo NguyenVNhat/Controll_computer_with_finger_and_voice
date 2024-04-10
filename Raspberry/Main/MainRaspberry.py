@@ -1,23 +1,7 @@
 import sys
-sys.path.insert(0,'Model')
 import re
 import json
-import threading
 import socket
-import GenerateNewDataWebsite
-import speech_recognition as sr
-def get_audio():
-    print('start : ')
-    r = sr.Recognizer()
-    with sr.Microphone() as source: 
-        audio = r.listen(source, phrase_time_limit=5) 
-        try:
-            text = r.recognize_google(audio, language="vi-VN") 
-            print(text)
-            print('finish')
-            return text
-        except:
-            return None   
 def AnalysisSound(request):
     # mở website
     with open('Resource/requestWebsite.json', encoding='utf-8') as file:
@@ -96,42 +80,18 @@ def AnalysisSound(request):
                         return p + request.split(p)[1]
 
     return "Error"
-
-
-def receive_message_from_server(client_socket):
-    while True:
-        try:
-            response = client_socket.recv(1024).decode()
-            print(response)
-            website = response.split("|||")[1]
-            url = response.split("|||")[2]
-            GenerateNewDataWebsite.addNewWebsiteRequest(website)
-        except ConnectionResetError:
-            print("Server đã đóng kết nối.")
-            break
-
-def send_message_to_server(client_socket):
-    while True:
-        request = input("nhập :")
-        request = request.lower()
-        message = AnalysisSound(request)
-        message = message +" Message "+request
-        client_socket.send(message.encode())
-        if message.lower() == 'exit':
-            break
-
+                    
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect(('localhost', 12345))
-
-receive_thread = threading.Thread(target=receive_message_from_server, args=(client_socket,))
-receive_thread.start()
-
-send_thread = threading.Thread(target=send_message_to_server, args=(client_socket,))
-send_thread.start()
-
-receive_thread.join()
-send_thread.join()
-
+host = '127.0.0.1'
+port = 12345
+client_socket.connect((host, port))
+while True:
+    request = input('Nhập message: ')
+    request = request.lower()
+    message = AnalysisSound(request) +" Message "+request
+    client_socket.send(message.encode())
+    data = client_socket.recv(1024).decode()
+    print("Tin nhắn từ server:", data)
 client_socket.close()
 
 

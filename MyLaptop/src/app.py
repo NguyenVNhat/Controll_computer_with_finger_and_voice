@@ -5,6 +5,7 @@ from queue import Queue
 import time
 import json
 import numpy as np
+
 class ChatBot:
     newwebsite = ''
     sendnewwebsite = False
@@ -25,6 +26,7 @@ class ChatBot:
     @staticmethod
     def close_callback(route, websockets):
         exit()
+
     @staticmethod
     def close():
         ChatBot.started = False
@@ -53,6 +55,7 @@ class ChatBot:
             ChatBot.direction = 1
         eel.setAppInput(data['apprespone'][random])
         ChatBot.random += ChatBot.direction
+
     @staticmethod
     def setAppInputMSG(msg):
         eel.setAppInput(msg)
@@ -61,27 +64,27 @@ class ChatBot:
     def setUserInput(msg):
         eel.setUserInput(msg)
 
-        
     @staticmethod
     def start():
         path = os.path.dirname(os.path.abspath(__file__))
         eel.init(path + r'\web', allowed_extensions=['.js', '.html'])
         try:
             eel.start('index.html', mode='chrome',
-                      host='localhost',
-                      port=27005,
-                      block=False,
-                      size=(620, 390),
-                      position=(10,100),
-                      disable_cache=True,
-                      close_callback=ChatBot.close_callback)
+                                    host='localhost',
+                                    port=27005,
+                                    block=False,
+                                    size=(350, 480),
+                                    position=(400,100),
+                                    disable_cache=True,
+                                    close_callback=ChatBot.close_callback)
             ChatBot.started = True
-
             while ChatBot.started:
                 try:
                     eel.sleep(10.0)
                 except:
+                    #main thread exited
                     break
+        
         except:
             pass
 
