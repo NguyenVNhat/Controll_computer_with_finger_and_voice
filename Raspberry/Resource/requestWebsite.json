@@ -10,7 +10,10 @@
         [
             "google"
         ],
-        []
+        [
+            "tìm kiếm",
+            "tra cứu"
+        ]
     ],
     "gmail": [
         [
@@ -61,19 +64,6 @@
         ],
         [
             "ums"
-        ],
-        []
-    ],
-    "github": [
-        [
-            "mở",
-            "bật",
-            "vào",
-            "open",
-            "truy cập"
-        ],
-        [
-            "github"
         ],
         []
     ],
@@ -472,8 +462,36 @@
         ],
         [
             "codepen.io"
-        ],[
-            
+        ],
+        []
+    ],
+    "github": [
+        [
+            "mở",
+            "bật",
+            "vào",
+            "open",
+            "truy cập"
+        ],
+        [
+            "github"
+        ],
+        []
+    ],
+    "zingmp3": [
+        [
+            "mở",
+            "bật",
+            "vào",
+            "open",
+            "truy cập"
+        ],
+        [
+            "zingmp3"
+        ],
+        [
+            "tìm kiếm",
+            "tra cứu"
         ]
     ]
 }

@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(0,'Models')
 sys.path.insert(1,'src')
-import Internet,App,Basic,CMD,ComputerFunction
+import Internet,App,Basic,CMD,ComputerFunction,GenerateNewDataWebsite
 import app
 import socket
 import threading
@@ -13,6 +13,7 @@ def getAudio():
 requestCMD = ['mở cài đặt','mở cài đặt âm thanh','mở cài đặt display''mở cài đặt autoplay','mở cài đặt usb','mở cài đặt pen and windows ink',
               'mở cài đặt touchpad','mở cài đặt mobile-devices','mở cài đặt mouse','mở cài đặt printers','mở cài đặt bluetooth','mở file explorer',
               'mở task manager','mở máy tính','mở control panel','mở quản lí ảnh','mở camera','mở lịch','mở quản lí đồng hồ','mở bản đồ','mở outlook']
+
 allApp = ['']
 def mainFunction(keyvalue):
     request = keyvalue
@@ -24,12 +25,14 @@ def mainFunction(keyvalue):
         elif 'âm lượng' in request:
             vol = request.split('lượng',1)
             ComputerFunction.controlVolumn(int(vol[1]))
+        elif 'thời tiết' in request:
+            Internet.current_weather(request.split('tiết ')[1])
         elif 'độ sáng' in request:
             val = request.split('sáng',1)
             ComputerFunction.controlBrightness(int(val[1]))
         elif 'mở ứng dụng' in request:
             app = request.split('dụng',1)
-            App.open_application_multi(app[1])
+            App.search_on_start_menu(app[1])
         elif 'mở web' in request:
             request = request.replace(" ","")
             web = request.split('web',1)
@@ -37,14 +40,20 @@ def mainFunction(keyvalue):
         elif 'mở youtube và tìm kiếm' in request:
             song = request.split('kiếm',1)
             Internet.play_Video(song[1])
-        elif 'mở zingmp3 tìm kiếm' in request:
+        elif 'mở zingmp3 và tìm kiếm' in request:
             song = request.split('kiếm',1)
             Internet.play_song_mp3(song[1])
-        elif 'tìm kiếm trên google' in request:
-            search = request.split('google',1)
+        elif 'mở google và tìm kiếm' in request:
+            search = request.split('kiếm',1)
             Internet.googleSearch(search[1])
         elif 'chụp màn hình' in request:
             ComputerFunction.screenShot()
+        elif 'chuyển trang' in request:
+            ComputerFunction.Return_Window()
+        elif 'thư mục' in request:
+            CD = request[0]
+            folder = request.split('mục')[1]
+            ComputerFunction.find_and_open_folder(CD,folder)
         elif 'gửi email' in request:
             title = input('Nhập tiêu đề :')
             content = input('Nhập nội dung :')
@@ -59,37 +68,63 @@ def mainFunction(keyvalue):
 def start_chatbot():
     app.ChatBot.start()
 
-# Hàm chạy socket server trong một luồng
-def start_socket_server():
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    host = '127.0.0.1'
-    port = 12345
-    server_socket.bind((host, port))
-    server_socket.listen(5)
-    print("Server đang lắng nghe tại {}:{}".format(host, port))
-
+def receive_message_from_client(client_socket):
     while True:
-        client_socket, client_address = server_socket.accept()
-        print("Kết nối từ:", client_address)
-        while True:
+        try:
             data = client_socket.recv(1024).decode()
-            if data == 'Error':
+            print(data)
+            request = data.split('Message')[0]
+            message = data.split('Message')[1]
+            if "Error" in data:
+                app.ChatBot.setUserInput(message)
                 app.ChatBot.setAppInputMSG("Tôi không hiểu ý bạn")
             else :
-                request = data.split('Message')[0]
-                message = data.split('Message')[1]
                 app.ChatBot.setUserInput(message)
-                app.ChatBot.setAppInput()
                 mainFunction(request)
-            message = "Tin nhắn của bạn đã được nhận!"
-            client_socket.send(message.encode())
-        client_socket.close()
+                app.ChatBot.setAppInput()
+                
+        except ConnectionResetError:
+            print("Client đã ngắt kết nối.")
+            break
+# ADDWEBSITE|||google driver|||https://drive.google.com/
+def send_message_to_client(client_socket):
+    while True:
+        try:
+            status = app.ChatBot.sendnewwebsite
+            if status == True:
+                message = app.ChatBot.newwebsite
+                website = message.split("|||")[1]
+                url = message.split("|||")[2]
+                GenerateNewDataWebsite.addNewWebsiteURL(website,url)
+                client_socket.send(message.encode())
+                app.ChatBot.sendnewwebsite = False
+        except ConnectionResetError:
+            print("Client đã ngắt kết nối.")
+            break
 
-# Khởi chạy 2 luồng
-if __name__ == "__main__":
-    chatbot_thread = threading.Thread(target=start_chatbot)
-    chatbot_thread.start()
 
-    socket_server_thread = threading.Thread(target=start_socket_server)
-    socket_server_thread.start()
+startChat = threading.Thread(target=start_chatbot)
+startChat.start()
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('localhost', 12345))
+server_socket.listen(5)
+
+print("Server đang mở ...")
+
+client_socket, address = server_socket.accept()
+print(f"Kết nối từ {address} được thành lập.")
+
+
+receive_thread = threading.Thread(target=receive_message_from_client, args=(client_socket,))
+receive_thread.start()
+
+send_thread = threading.Thread(target=send_message_to_client, args=(client_socket,))
+send_thread.start()
+
+receive_thread.join()
+send_thread.join()
+
+client_socket.close()
+server_socket.close()
 

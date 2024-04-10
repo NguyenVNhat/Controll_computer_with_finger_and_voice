@@ -6,7 +6,12 @@ import time
 import json
 import numpy as np
 class ChatBot:
+    newwebsite = ''
+    sendnewwebsite = False
     started = False
+    random = 0
+    direction = 1
+
     userinputQueue = Queue()
 
     @staticmethod
@@ -26,17 +31,28 @@ class ChatBot:
 
     @staticmethod
     @eel.expose
-    def getUserInput(msg):
+    def getnewWebsite(msg):
+        ChatBot.userinputQueue.put(msg)
+        ChatBot.sendnewwebsite = True
+        ChatBot.newwebsite = msg
+        print(ChatBot.newwebsite)
+
+    @staticmethod
+    def startSetting(msg):
         ChatBot.userinputQueue.put(msg)
         print(msg)
-
+        
     @staticmethod
     def setAppInput():
         with open('Resource/dict_respone.json', encoding='utf-8') as file:
             data = json.load(file)
-        random = np.random.randint(0,len(data))
-        print(random)
+        random = ChatBot.random
+        if ChatBot.random == len(data):
+            ChatBot.direction = -1
+        if ChatBot.random == 0:
+            ChatBot.direction = 1
         eel.setAppInput(data['apprespone'][random])
+        ChatBot.random += ChatBot.direction
     @staticmethod
     def setAppInputMSG(msg):
         eel.setAppInput(msg)
