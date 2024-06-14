@@ -3,6 +3,7 @@ import pygame
 import numpy as np
 import pyautogui
 import comtypes
+import time
 
 def initialize_com():
     comtypes.CoInitialize()
@@ -84,5 +85,18 @@ def control_computer(lmList):
                     pyautogui.click()  # Simulate clicking on the volume slider
                 except pyautogui.FailSafeException:
                     print("The mouse cursor is out of the screen boundaries.")
+    
+            # cv2.putText(frame,f"{str(text)}",(100,200),3,3,(0,255,0),3)
+            elif int(songontay) == 4:
+                pyautogui.scroll(-100)
+                # Chờ 1 giây
+                time.sleep(1)
+            elif int(songontay) == 5:
+                pyautogui.scroll(100)
+                # Chờ 1 giây
+                time.sleep(1)
+    
+    
+    
     finally:
         uninitialize_com()

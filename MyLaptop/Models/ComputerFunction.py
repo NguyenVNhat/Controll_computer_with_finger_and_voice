@@ -14,15 +14,10 @@ import subprocess
 import pygetwindow as gw
 import Basic
 
-def get_time(text):
+def get_time():
     now = datetime.datetime.now()
-    if "giờ" in text:
-        Basic.speak('Bây giờ là %d giờ %d phút' % (now.hour, now.minute))
-    elif "ngày" in text:
-        Basic.speak("Hôm nay là ngày %d tháng %d năm %d" %
-              (now.day, now.month, now.year))
-    else:
-        Basic.speak("Mình chưa hiểu ý của bạn. Bạn nói lại được không?")
+    Basic.speak('Bây giờ là %d giờ %d phút ngày %d tháng %d năm %d' % (now.hour, now.minute,now.day, now.month, now.year))
+    
 
 # điều khiển âm thanh
 def controlVolumn(vol):
@@ -77,3 +72,5 @@ def switch_window(window_title):
 
     except Exception as e:
         print(f"Không thể chuyển đến cửa sổ: {window_title}. Lỗi: {e}")
+def alt_f4():
+    pyautogui.hotkey('alt', 'f4')

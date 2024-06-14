@@ -5,36 +5,36 @@ from comtypes import CLSCTX_ALL
 import subprocess
 import logging
 logging.basicConfig(level=logging.WARNING)
+import pyautogui
+import time
+import re
 
-lstApp = ['winword.exe','chrome.exe','powerpnt.exe']
-lstappuser = ['word','google','powerpoint']
-#mở nhiều app trên máy tính
-def open_application_multi(text):
-    text = text.lower()
-    for user_app, actual_app in zip(lstappuser, lstApp):
-        if user_app in text:
-            text = text.replace(user_app, actual_app)
-    
-    lst = []
-    
-    for txt in lstApp:
-        if txt in text:
-            lst.append(txt)
-    print(lst)
-    for app in lst:
-        open_application(app)
-        time.sleep(5)
-#mở 1 app
-def open_application(text):
-    applications_folder = "C:\Program Files" 
-    for root, dirs, files in os.walk(applications_folder):
-        for file in files:
-            if fnmatch.fnmatch(file.lower(), f'*{text.lower()}*'):
-                os.startfile(os.path.join(root, file))
+def OpenApp(query):
+    pyautogui.press('win')
+    time.sleep(1) 
+    pyautogui.write(query)
+    time.sleep(1)
+    pyautogui.press('enter')
 
-def OpenApp(app):
+def find_directories(root_folder, pattern):
+    found_directories = []
+    for root, dirs, files in os.walk(root_folder):
+        for directory in dirs:
+            if pattern.search(directory): 
+                found_directories.append(os.path.join(root, directory))
+    return found_directories
+
+def open_folder_path(path):
     try:
-        subprocess.run(['start', '/MIN', '/B', f'{app}.exe'], shell=True)
+        subprocess.Popen(f'explorer "{path}"')
     except Exception as e:
-        logging.warning(f'Error: Unable to open {app} - {e}')
+        print(f"Lỗi: {e}")
 
+def open_folder(foldername):
+    foldername = foldername.strip()
+    root_folders = ["C:\\","D:\\","E:\\"]
+    for root_folder in root_folders:
+        pattern = re.compile(foldername, re.IGNORECASE)  
+        result = find_directories(root_folder, pattern)
+        for directory in result:
+            open_folder_path(directory)

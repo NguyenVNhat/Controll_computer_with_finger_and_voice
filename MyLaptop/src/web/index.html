@@ -5,55 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/jquery.convform.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="fontawesome-free-6.5.2-web/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="eel.js"></script>
 </head> 
 
 <body>
-    <!-- header -->
     <header>
         <div class="header-wrapper">
             <p class="awesome">Project basic learning 5</p>
             <div class="logo">
-                <img src="images/icon.png" width="35" height="33">
+                <i id="button-setting" class="fa-solid fa-gear fa-2x"></i>
             </div>
         </div>
     </header>
-    <!-- ChatBot -->
-    <div class="content">
-        <div class="chat_icon">
-            <i class="fa fa-comments" aria-hidden="true"></i>
-        </div>
+    
+    <div class="content" id="home">
+      
         <div class="container">
-            <!-- <div class="camera_box">
-                <div class="camera">
-                    <video id="videoElement" autoplay></video>
-                </div>
-            </div> -->
             <div class="chat_box">
                 <div class="conv-form-wrapper">
-                    <div id="messages">                    
-                    </div>
+                    <div id="messages"></div>
                 </div>
                 <div id="convForm" class="convFormDynamic">
                     <div class="options dragscroll"></div>
-                    <input type="text" id="userInput" placeholder="Nhập gì đó đi ..." class="userInputDynamic">
+                    <button id="voiceButton"  type="button" class="submit"><i class="fa-solid fa-microphone"></i></button>
+                    <input type="text" style="display: block;" id="userInput" placeholder="Nhập ..." class="userInputDynamic">
                     <button id="userInputButton" type="button" class="submit">▶</button>
                     <span class="clear"></span>
+                    <ul id="suggestionsList"></ul>
                 </div>
             </div>
         </div>
+       
     </div>
+    
+    
+    
 </body>
 <script type="text/javascript" src="js/main.js"></script>
-<!-- <script>
-    // Lấy video stream từ camera
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(stream) {
-            var videoElement = document.getElementById('videoElement');
-            videoElement.srcObject = stream;
-        })
-        .catch(function(err) {
-            console.log("Lỗi: " + err);
-        });
-</script> -->
+
 </html>

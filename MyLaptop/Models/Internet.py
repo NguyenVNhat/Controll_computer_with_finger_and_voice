@@ -8,50 +8,18 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import json
-file_path = 'Resource/dict_website.json'
-def addJson(name,url):
-    new_data = {name:url}
-    with open(file_path, encoding='utf-8') as file:
-        data = json.load(file)
-    data.update(new_data)
-    with open(file_path, 'w', encoding='utf-8') as file:
-            json.dump(data, file, indent=4, ensure_ascii=False)
-
-#mở website
-def open_website(text):
-    with open('Resource/dict_website.json', encoding='utf-8') as file:
-        data = json.load(file)
-    if text in data:
-        query = data[text]
-        url = query[0]
+import Basic
+def open_website(url):
         webbrowser.open(url)
-# mở nhạc youtube
-def play_Video(text):
-    mysong = text
-    while True:
-        result = VideosSearch(mysong, limit=1).result()
-        if result['result']:
-            break
-    video_url = 'https://www.youtube.com/watch?v=' + result['result'][0]['id']
-    webbrowser.open(video_url)
-
-# mở nhạc zingmp3
-def play_song_mp3(song_name):
-    search_url = "https://zingmp3.vn/tim-kiem/tat-ca?q={}".format(song_name.replace(" ", "+"))
-    webbrowser.open(search_url)
-
-# tìm kiếm trên google
-def googleSearch(text):
-    search_url = f"https://www.google.com/search?q={text}"
-    webbrowser.open(search_url)
 
 # lấy thông tin từ trang dự báo thời tiết
 def current_weather(text):
     ow_url = "http://api.openweathermap.org/data/2.5/weather?"
+    text = text.title()
+    text = text.strip()
     city = text
-    if not city:
-        pass
-    api_key = "fe8d8c65cf345889139d8e545f57819a"
+    print(text)
+        
     call_url = ow_url + "appid=" + api_key + "&q=" + city + "&units=metric"
     response = requests.get(call_url)
     data = response.json()
@@ -73,10 +41,11 @@ def current_weather(text):
         Nhiệt độ trung bình là {temp} độ C
         Áp suất không khí là {pressure} héc tơ Pascal
         Độ ẩm là {humidity}%
-        """.format(day = now.day,month = now.month, year= now.year, hourrise = sunrise.hour, minrise = sunrise.minute,
-                                                                           hourset = sunset.hour, minset = sunset.minute, 
-                                                                           temp = current_temperature, pressure = current_pressure, humidity = current_humidity)
-        return content
+        """.format(day=now.day, month=now.month, year=now.year, hourrise=sunrise.hour, minrise=sunrise.minute,
+                   hourset=sunset.hour, minset=sunset.minute,
+                   temp=current_temperature, pressure=current_pressure, humidity=current_humidity)
+        print(content)
+        Basic.speak(content)
     
 def send_email(title,text, email_receive):
     email_send = 'nhataaghjkl@gmail.com'

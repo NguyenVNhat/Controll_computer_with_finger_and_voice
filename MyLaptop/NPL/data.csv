@@ -1,0 +1,102 @@
+﻿DanhTu,Ydinh,DongTu,ChuThe,LoaiChuThe,Url,Value,LoaiDongTu2,DongTu2,UrlFind
+tôi,muốn,bật,youtube,web,https://www.youtube.com/,0,1,tìm-kiếm,https://www.youtube.com/results?search_query=
+mình,định,vào,facebook,web,https://www.facebook.com/,1,1,tra-cứu,https://www.facebook.com/search/top?q=
+tao,có hứng,truy-cập,gmail,web,https://mail.google.com/,2,2,tìm-kiếm-thư-mục,https://mail.google.com/mail/u/0/?tab=rm&ogbl#search/
+tau,,mở,tiktok,web,https://www.tiktok.com/vi-VN/,3,2,tìm-kiếm-folder,https://www.tiktok.com/search?q=
+tui,,cài-đặt,zalo,web,https://chat.zalo.me/,4,,,https://chat.zalo.me/
+anh,,điều-chỉnh,discord,web,https://discord.com/channels/@me,5,,,https://discord.com/channels/@me
+chị,,xem,github,web,https://github.com/,6,,,https://github.com/search?q=
+em,,gửi,gitdev,web,https://github.dev/,7,,,https://github.dev/
+tớ,,quay-lại,hackerrrank,web,https://www.hackerrank.com/,8,,,https://www.hackerrank.com/profile/
+,,quản-lí,myclass,web,https://myclass.lpu.in/,9,,,https://myclass.lpu.in/
+,,chụp,lpulive,web,https://lpulive.lpu.in/,10,,,https://lpulive.lpu.in/
+,,lấy,usm,web,https://ums.lpu.in/lpuums/,11,,,https://ums.lpu.in/lpuums/
+,,trở-lại,chatgpt,web,https://chat.openai.com/,12,,,https://chat.openai.com/
+,,,stackoverflow,web,https://stackoverflow.com/,13,,,https://stackoverflow.com/questions/tagged/
+,,,teams,web,https://teams.microsoft.com/,14,,,https://teams.microsoft.com/_#/apps/a2da8768-95d5-419e-9441-3b539865b118/search?q=
+,,,codepen,web,https://codepen.io/,15,,,https://codepen.io/search/pens?q=
+,,,w3school,web,https://www.w3schools.com/,16,,,https://www.w3schools.com/#gsc.tab=0&gsc.q=
+,,,geeksforgeeks,web,https://www.geeksforgeeks.org/,17,,,https://www.geeksforgeeks.org/
+,,,instagram,web,https://www.instagram.com/,18,,,https://www.instagram.com/
+,,,linkedin,web,https://www.linkedin.com/,19,,,https://www.linkedin.com/search/results/all/?keywords=
+,,,twitter,web,https://twitter.com/,20,,,https://twitter.com/
+,,,figma,web,https://www.figma.com/,21,,,https://www.figma.com/
+,,,tinkercard,web,https://www.tinkercad.com/,22,,,https://www.tinkercad.com/search?q=
+,,,outlook,web,https://outlook.live.com/,23,,,https://keep.google.com/#search/
+,,,googlekeep,web,https://keep.google.com/,24,,,https://keep.google.com/
+,,,googlecolab,web,https://colab.research.google.com/,25,,,https://colab.research.google.com/
+,,,reddit,web,https://www.reddit.com/,26,,,https://www.reddit.com/search/?q=
+,,,tvhay,web,https://tvhayii.org/,27,,,https://tvhayii.org/search/?s=
+,,,codechef,web,https://www.codechef.com/,28,,,https://www.codechef.com/
+,,,codecademy,web,https://www.codecademy.com/catalog,29,,,https://www.codecademy.com/search?query=
+,,,udemy,web,https://www.udemy.com/,30,,,https://www.udemy.com/courses/search/?src=ukw&q=
+,,,coursera,web,https://www.coursera.org/,31,,,https://www.coursera.org/search?query=
+,,,google,web,https://www.google.com/,32,,,https://www.google.com/search?q=
+,,,sv,web,http://sv.dut.udn.vn/,33,,,http://sv.dut.udn.vn/
+,,,setting,cmd,start ms-settings:,34,,,
+,,,âm-thanh,cmd,start ms-settings:sound,35,,,
+,,,display,cmd,start ms-settings:display,36,,,
+,,,autoplay,cmd,start ms-settings:autoplay,37,,,
+,,,usb,cmd,start ms-settings:usb,38,,,
+,,,pen-and-windows-ink,cmd,start ms-settings:pen,39,,,
+,,,touchpad,cmd,start ms-settings:devices-touchpad,40,,,
+,,,mobile-devices,cmd,start ms-settings:mobile-devices,41,,,
+,,,mouse,cmd,start ms-settings:mousetouchpad,42,,,
+,,,printers,cmd,start ms-settings:printers,43,,,
+,,,bluetooth,cmd,start ms-settings:bluetooth,44,,,
+,,,fileexplore,cmd,start explorer,45,,,
+,,,task-manager,cmd,taskmgr,46,,,
+,,,máy-tính ,cmd,calc,47,,,
+,,,control-panel,cmd,control panel,48,,,
+,,,ảnh,cmd,start ms-photos:,49,,,
+,,,camera,cmd,start microsoft.windows.camera:,50,,,
+,,,lịch,cmd,start outlookcal:,51,,,
+,,,đồng-hồ,cmd,start ms-clock:,52,,,
+,,,bản-đồ,cmd,start bingmaps:,53,,,
+,,,outlookmail,cmd,start outlookmail:,54,,,
+,,,âm-thanh ,cpt,,55,,,
+,,,màn-hình,cpt,,56,,,
+,,,thời-gian,cpt,,57,,,
+,,,độ-sáng,cpt,,58,,,
+,,,ánh-sáng,cpt,,59,,,
+,,,loa,cpt,,60,,,
+,,,trang-cũ,cpt,,61,,,
+,,,âm-lượng,cpt,,62,,,
+,,,thời-tiết,cpt,,63,,,
+,,,ứng-dụng,app,,64,,,
+,,,ngày-bao-nhiêu,cpt,,65,,,
+,,,ngày-mấy,cpt,,66,,,
+,,,mấy-giờ,cpt,,67,,,
+,,,tắt-ứng-dụng,cpt,,68,,,
+,,,,,,69,,,
+,,,,,,70,,,
+,,,,,,71,,,
+,,,,,,72,,,
+,,,,,,73,,,
+,,,,,,74,,,
+,,,,,,75,,,
+,,,,,,76,,,
+,,,,,,77,,,
+,,,,,,78,,,
+,,,,,,79,,,
+,,,,,,80,,,
+,,,,,,81,,,
+,,,,,,82,,,
+,,,,,,83,,,
+,,,,,,84,,,
+,,,,,,85,,,
+,,,,,,86,,,
+,,,,,,87,,,
+,,,,,,88,,,
+,,,,,,89,,,
+,,,,,,90,,,
+,,,,,,91,,,
+,,,,,,92,,,
+,,,,,,93,,,
+,,,,,,94,,,
+,,,,,,95,,,
+,,,,,,96,,,
+,,,,,,97,,,
+,,,,,,98,,,
+,,,,,,99,,,
+,,,,,,100,,,
